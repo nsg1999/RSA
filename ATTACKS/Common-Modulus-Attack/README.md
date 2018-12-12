@@ -1,0 +1,1 @@
+Common Modulus attack works in the scenario when a message is encrypted in two different ways, once using a modulus and a public key exponent and another time using the same modulus but different public exponent
