@@ -1,11 +1,12 @@
 from Crypto.Util.number import *
 
+m = "flag{Gr34t!_y0u_h4v3_d0n3_it!!}"
 p = getPrime(512)
 q = getPrime(512)
 n = p*q
 e = 65537
-phi = (p-1)*(q-1)
-m = "flag{Gr34t!_y0u_h4v3_d0n3_it!!}"
+phin = (p-1)*(q-1)
+
 
 def egcd(a,b):
 	if b == 0:
@@ -25,14 +26,12 @@ def mod_inv(a,b,x1,x2,y1,y2):
 	else:
 		print "mod_inv_doesn't_exist"
 
-# Exploit
-# A simple implementation for learning Choosen Ciphertext Attack
 m = bytes_to_long(m)
-d = (mod_inv(e,phi,1,0,0,1))%phi
+d = (mod_inv(e,phin,1,0,0,1))%phin
 r = 13907
 c = pow(m,e,n)
-c1 = c * pow(r,e,n)
-c1 = pow(c1,d,n)
-pt = c1/r
+ct = c * pow(r,e,n)
+ct = pow(ct,d,n)
+pt = ct/r
 print long_to_bytes(pt)
-print m == pt
+
