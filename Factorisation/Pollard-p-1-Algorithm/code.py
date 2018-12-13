@@ -1,17 +1,22 @@
 from sage.all import *
 
-def Pollardp(n, B):
-	a = 2
+def factor(n):
+    a = 2
+    b = 2
+    while True:
+        if b % 10000 == 0:
+            print(b)
+            
+        a = pow(a, b, n)
+            
+        p = gcd(a - 1, n)
+        if 1 < p < n:
+            print("FOUND " + str(p))
+            return p
+            
+        b += 1
 
-	for p in primes(B):
-		s = 1
-		while(s*p <= B):
-			s = s * p
-		g = gcd(pow(a, s, n)-1, n)
-		if(1 < g < n):
-			return g
-	return None
 	
 
-f1 = Pollardp(1403, 6)
+f1 = Pollardp(1403)
 print(f1)
