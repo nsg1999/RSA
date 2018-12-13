@@ -18,5 +18,5 @@ def factor(n):
 
 	
 
-f1 = Pollardp(1403)
+f1 = factor(1403)
 print(f1)
